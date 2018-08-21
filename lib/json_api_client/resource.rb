@@ -34,6 +34,7 @@ module JsonApiClient
                     :route_format,
                     :request_params_class,
                     :keep_request_params,
+                    :type,
                     instance_accessor: false
     self.primary_key          = :id
     self.parser               = Parsers::Parser

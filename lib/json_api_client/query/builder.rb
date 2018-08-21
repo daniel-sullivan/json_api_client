@@ -93,11 +93,11 @@ module JsonApiClient
         case args
         when Hash
           where(args)
+          klass.requestor.get(params)
         else
           @primary_key = args
+          klass.requestor.get(params)[0] # Needed to get a non-array result back for a single find
         end
-
-        klass.requestor.get(params)
       end
 
       def method_missing(method_name, *args, &block)
