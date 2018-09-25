@@ -8,7 +8,7 @@ module JsonApiClient
 
       # Build a list of candidates to search for
       candidates = []
-      all_classes =  klass.parent_name.constantize.constants.select {|c| klass.parent_name.constantize.const_get(c).is_a? Class}
+      associations =  klass.associations
       klass.name.scan(/::|$/) { candidates.unshift "#{$`}::#{type_name}" }
       candidates << type_name
 
