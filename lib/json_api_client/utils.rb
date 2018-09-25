@@ -8,11 +8,11 @@ module JsonApiClient
 
       # Build a list of candidates to search for
       candidates = []
-      associations =  klass.associations
 
-      associations.each do | association |
+      # Pull candidates from the relations first
+      klass.associations.each do | association |
         if association.attr_name == type_name.underscore.to_sym
-          candidates << association[:class_name]
+          candidates << association.options[:class_name]
         end
       end
 
