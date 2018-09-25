@@ -9,6 +9,13 @@ module JsonApiClient
       # Build a list of candidates to search for
       candidates = []
       associations =  klass.associations
+
+      associations.each do | association |
+        if association.attr_name == type_name.underscore.to_sym
+          candidates << association[:class_name]
+        end
+      end
+
       klass.name.scan(/::|$/) { candidates.unshift "#{$`}::#{type_name}" }
       candidates << type_name
 
