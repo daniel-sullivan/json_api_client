@@ -49,7 +49,7 @@ module JsonApiClient
       end
 
       def error_msg
-        msg = title || detail || "invalid"
+        msg =  detail || title || "invalid"
         if source_parameter
           "#{source_parameter} #{msg}"
         else
