@@ -1,4 +1,6 @@
 require 'bigdecimal'
+require 'json'
+
 module JsonApiClient
   class Schema
     module Types
@@ -47,6 +49,12 @@ module JsonApiClient
         end
       end
 
+      class Hash
+        def self.cast(value, _)
+          value.to_json
+        end
+      end
+
     end
 
     class TypeFactory
@@ -91,7 +99,8 @@ module JsonApiClient
                     float: Types::Float,
                     time: Types::Time,
                     decimal: Types::Decimal,
-                    boolean: Types::Boolean
+                    boolean: Types::Boolean,
+                    hash: Types::Hash
 
     end
 
